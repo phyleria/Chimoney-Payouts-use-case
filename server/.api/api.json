@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "apis": [
+    {
+      "identifier": "chimoney",
+      "source": "@chimoney/v0.2.3#fee52wlv0ij9kp",
+      "integrity": "sha512-9O7yIJrpodLuaFQ/UqcBuyZ/VZMoeYSng7AlkcQI8t5FI7BQyyOTUXVCaK9Wt7z2oGdvZwRppSFkSarwOdc1dQ==",
+      "installerVersion": "6.1.1"
+    }
+  ]
+}
