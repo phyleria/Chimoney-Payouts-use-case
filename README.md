@@ -17,9 +17,17 @@ First, clone the repository to your local machine:
 git clone https://github.com/yourusername/chimoney-payout.git
 ```
 Then install the dependencies:
+```bash
+cd chimoney-payout
+npm install
+```
 
 ## Configuration
-Create a .env file in the root directory of the project and add your Chimoney API keys:
+Create a `.env` file in the root directory of the project and add your Chimoney API keys:
+
+```bash
+echo "REACT_APP_API_KEY=your_api_key_here" > .env
+```
 
 Replace your_api_key_here with your actual API key.
 
