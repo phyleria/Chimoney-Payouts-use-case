@@ -56,7 +56,6 @@ button:hover {
 
 form {
   display: flex;
-  /* background: #fff; */
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
@@ -64,25 +63,24 @@ form {
   margin: 20px auto;
 }
 
-label {
-  font-size: 1em;
-  margin-bottom: 0.5em;
-  color: #746f6f;
-}
-
 input,
 select {
   width: 90%;
   padding: 10px;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1em;
+  font-size: 0.9em;
+  font-family: "Comfortaa", sans-serif;
+  color: #746f6f;
 }
 
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
+  font-family: "Comfortaa", sans-serif;
+  font-size: 0.8em;
+  color: #746f6f;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -156,10 +154,10 @@ input[type="number"]::-webkit-inner-spin-button {
   border: none;
   color: #ff0000;
   font-size: 20px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -20px;
+  right: -24px;
   cursor: pointer;
+  position: absolute;
 }
 
 .remove-recipient:hover {

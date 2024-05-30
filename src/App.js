@@ -63,7 +63,9 @@ function App() {
       <header className="App-header">
         <h1>Welcome HR!</h1>
         <p>Manage your employee payouts here.</p>
-        <button onClick={handleShowPayoutForm}>Pay Employees</button>
+        {!showPayoutForm && (
+          <button onClick={handleShowPayoutForm}>Pay Employees</button>
+        )}
         {showPayoutForm && (
           <form onSubmit={handlePayout}>
             {recipients.map((recipient, index) => (

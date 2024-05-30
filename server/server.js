@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const sdk = require("@api/chimoney");
 const nodemailer = require("nodemailer");
@@ -7,8 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-sdk.auth("dc3f951321ad9dd15263cf8c0e64a2d216dc3b005201e5ae8fba685e52884c10");
-sdk.server("https://api-v2-sandbox.chimoney.io");
+sdk.auth(process.env.REACT_APP_API_KEY);
+sdk.server(process.env.API_BASE_URL);
 
 app.post("/payout", async (req, res) => {
   const { email, valueInUSD, currency } = req.body;
@@ -21,8 +22,8 @@ app.post("/payout", async (req, res) => {
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "your-email@gmail.com",
-        pass: "your-email-password",
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
@@ -39,10 +40,8 @@ app.post("/payout", async (req, res) => {
   } catch (error) {
     console.error("Error during payout:", error);
 
-    // Log the error stack trace to help with debugging
     console.error(error.stack);
 
-    // Send a more detailed error response
     res.status(500).json({
       status: "error",
       message: "Error when trying to payout",
