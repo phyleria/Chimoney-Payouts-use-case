@@ -113,7 +113,7 @@ function App() {
               onClick={handleAddRecipient}
               className="add-recipient"
             >
-              + Add Another Recipient
+              + Add a Recipient
             </button>
             <button type="submit">Pay Employees</button>
           </form>
