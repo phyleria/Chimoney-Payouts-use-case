@@ -4,7 +4,7 @@ This is a React application that leverages the Chimoney API for managing payouts
 
 ## Prerequisites
 
-Before you begin, ensure you have met the following requirements:
+Before you begin, ensure you have the following requirements:
 
 - You have a recent version of Node.js installed.
 - You have obtained API keys from [Chimoney Sandbox](https://sandbox.chimoney.io/).
