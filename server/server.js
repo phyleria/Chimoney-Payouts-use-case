@@ -1,47 +1,33 @@
 require("dotenv").config();
 const express = require("express");
-const sdk = require("@api/chimoney");
-const nodemailer = require("nodemailer");
 const cors = require("cors");
+const axios = require("axios");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-sdk.auth(process.env.REACT_APP_API_KEY);
-sdk.server(process.env.API_BASE_URL);
-
 app.post("/payout", async (req, res) => {
   const { email, valueInUSD, currency } = req.body;
 
+  const options = {
+    method: 'POST',
+    url: `${process.env.API_BASE_URL}/v0.2/payouts/chimoney`,
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      'X-API-KEY': process.env.REACT_APP_API_KEY
+    },
+    data: {
+      chimoneys: [{ email, valueInUSD, currency }]
+    }
+  };
+
   try {
-    const response = await sdk.postV02PayoutsChimoney({
-      chimoneys: [{ email, valueInUSD, currency }],
-    });
-
-    let transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    let info = await transporter.sendMail({
-      from: '"Chimoney" <your-email@gmail.com>',
-      to: email,
-      subject: "Chimoney Payout",
-      text: `You have received a payout. Redeem it here: ${response.data.paymentLink}`,
-    });
-
-    console.log("Email sent: %s", info.messageId);
-
+    const response = await axios.request(options);
     res.json({ status: "success", data: response.data });
   } catch (error) {
     console.error("Error during payout:", error);
-
-    console.error(error.stack);
-
     res.status(500).json({
       status: "error",
       message: "Error when trying to payout",
